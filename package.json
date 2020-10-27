@@ -2,7 +2,9 @@
     "name": "typescript-project-template",
     "version": "1.0.0",
     "description": "A bare-bones project template for TypeScript projects",
-    "main": "src/index.ts",
+    "main": "lib/index.js",
+    "module": "lib/index.esm.js",
+    "types": "types/*.d.ts",
     "scripts": {
         "build": "npx rollup --c rollup.config.ts",
         "test": "jest --coverage --verbose -u"
