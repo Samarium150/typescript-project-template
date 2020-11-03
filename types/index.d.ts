@@ -1,1 +1,1 @@
-declare module 'rollup-plugin-eslint'
+declare function main(str: string): string
