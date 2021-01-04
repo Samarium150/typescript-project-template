@@ -3,7 +3,7 @@ const path = require('path');
 const gulp = require('gulp');
 const typedoc = require("gulp-typedoc");
 const rollup = require('rollup');
-const {eslint} = require('rollup-plugin-eslint');
+const eslint = require('@rollup/plugin-eslint');
 const typescript = require('rollup-plugin-typescript2');
 const commonjs = require("@rollup/plugin-commonjs");
 const {nodeResolve} = require("@rollup/plugin-node-resolve");
@@ -30,11 +30,7 @@ async function build(callback) {
                 exclude: ["node_modules/**", "lib/**", "*.js"]
             }),
             commonjs(),
-            nodeResolve({
-                customResolveOptions: {
-                    moduleDirectory: "node_modules",
-                }
-            }),
+            nodeResolve(),
             typescript()
         ]
     });
@@ -52,12 +48,9 @@ async function build(callback) {
 }
 
 function doc() {
-    return gulp.src("src/*.ts").pipe(
+    return gulp.src(["src/*.ts"]).pipe(
         typedoc({
-            out: path.join(paths.output, "/docs"),
-            ignoreCompilerErrors: true,
-            version: true,
-            plugins: []
+            out: path.join(paths.output, "/docs")
         })
     );
 }

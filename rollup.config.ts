@@ -1,15 +1,15 @@
 import path from "path";
 import typescript from "rollup-plugin-typescript2";
-import {eslint} from "rollup-plugin-eslint";
+import eslint from "@rollup/plugin-eslint";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 
-import pkg from "./package.json"
+import pkg from "./package.json";
 
 const io = {
     input: path.join(__dirname, "/src/index.ts"),
     output: path.join(__dirname, "/lib")
-}
+};
 
 const config = {
     input: io.input,
@@ -33,15 +33,9 @@ const config = {
             }
         ),
         commonjs(),
-        resolve(
-            {
-                customResolveOptions: {
-                    moduleDirectory: "node_modules",
-                }
-            }
-        ),
+        resolve(),
         typescript()
     ]
-}
+};
 
 export default config;
